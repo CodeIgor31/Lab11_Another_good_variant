@@ -1,0 +1,26 @@
+<% if @palindrom.valid? %>
+  <% if @flag == true %>
+  <p><strong class='alert alert-info'>Данные добавлены в базу данных</strong></p>
+  <% end %>
+<h3>Таблица с результатами</h3>
+Введенное диапазон: [0, <%= @number[:numb]%>]
+<table class = "tab">
+    <tr>
+    <th>Число</th>
+    <th>Квадрат числа</th>
+    </tr>
+    <% @hash.each do |ar,sq|%>
+    <tr>
+        <td><%= ar %></td>
+        <td><%= sq %></td>
+    </tr>
+    <% end%>
+</table>
+Количество таких чисел
+<p id="counter"><%= @hash.size %></p>
+<% else %>
+    <% @palindrom.errors.each do |error| %>
+      <div class='alert alert-info'><%= error.full_message %></div>
+    <% end %>
+<% end %>
+<%= link_to "Вернуться назад", home_path %>
